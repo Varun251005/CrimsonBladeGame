@@ -4,16 +4,18 @@
 
 const CHAR_WIDTH       = 50;
 const CHAR_HEIGHT      = 120;
-const MOVE_SPEED       = 6;
-const JUMP_POWER       = 17;
+const MOVE_ACCEL       = 1.2;
+const MAX_SPEED        = 6;
+const JUMP_POWER       = 18;
 const LIGHT_DMG        = 8;
 const HEAVY_DMG        = 15;
 const SPECIAL_DMG      = 22;
-const ATTACK_COOLDOWN  = 28;          // frames
-const ATTACK_DURATION  = 18;          // frames total
-const HIT_ACTIVE_START = 5;           // frame when damage window opens
-const HIT_ACTIVE_END   = 12;          // frame when damage window closes
-const KNOCKBACK_FORCE  = 8;
+const ATTACK_COOLDOWN  = 28;
+const ATTACK_DURATION  = 18;
+const HIT_ACTIVE_START = 5;
+const HIT_ACTIVE_END   = 12;
+const KNOCKBACK_FORCE  = 10;
+const KNOCKBACK_VERT   = -5;
 const INVULN_FRAMES    = 25;
 const BLOCK_REDUCTION  = 0.25;
 const LUNGE_SPEED      = 4;
@@ -29,9 +31,11 @@ class Character {
         // Physics
         this.velocityX = 0;
         this.velocityY = 0;
-        this.speed     = MOVE_SPEED;
+        this.accel     = MOVE_ACCEL;
+        this.maxSpeed  = MAX_SPEED;
         this.jumpPower = JUMP_POWER;
         this.isJumping = false;
+        this.wasGrounded = false;
 
         // Combat
         this.health       = 100;
@@ -142,13 +146,13 @@ class Character {
     moveLeft() {
         if (this.defeated || this.hitStun > 0) return;
         if (this.isAttacking) return;
-        this.velocityX = -this.speed;
+        this.velocityX = Math.max(this.velocityX - this.accel, -this.maxSpeed);
     }
 
     moveRight() {
         if (this.defeated || this.hitStun > 0) return;
         if (this.isAttacking) return;
-        this.velocityX = this.speed;
+        this.velocityX = Math.min(this.velocityX + this.accel, this.maxSpeed);
     }
 
     jump() {
@@ -201,14 +205,14 @@ class Character {
         // Directional knockback
         const dir = attackerX < this.x ? 1 : -1;
         this.velocityX = dir * KNOCKBACK_FORCE;
-        this.velocityY = -4;  // slight lift
+        this.velocityY = KNOCKBACK_VERT;
 
         if (this.health <= 0) {
             this.health   = 0;
             this.defeated = true;
             this.isDead   = true;
-            this.velocityX = dir * 6;
-            this.velocityY = -8;
+            this.velocityX = dir * 8;
+            this.velocityY = -10;
         }
 
         return true;

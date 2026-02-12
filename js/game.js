@@ -14,9 +14,11 @@ class Game {
         this.ui       = new UIManager(this);
 
         // Game state
-        this.state     = 'menu';      // menu | playing | roundEnd | gameover
-        this.mode      = null;         // 1player | 2players
+        this.state     = 'menu';
+        this.mode      = null;
         this.isPaused  = false;
+        this.player1Name = 'PLAYER 1';
+        this.player2Name = 'PLAYER 2';
 
         // Ground
         this.groundY = this.canvas.height - 60;
@@ -38,9 +40,9 @@ class Game {
         this.roundEndTimer = 0;
 
         // ── Hit freeze ──
-        this.hitFreeze      = 0;           // frames to pause
-        this.HIT_FREEZE_DUR = 6;           // light hit
-        this.HEAVY_FREEZE   = 10;          // heavy / special
+        this.hitFreeze      = 0;
+        this.HIT_FREEZE_DUR = 8;
+        this.HEAVY_FREEZE   = 12;
 
         // ── Screen shake ──
         this.screenShake    = { x: 0, y: 0, intensity: 0, decay: 0.85 };
@@ -50,7 +52,7 @@ class Game {
 
         // ── Background ──
         this.backgroundImage = new Image();
-        this.backgroundImage.src = 'assets/background.png';
+        this.backgroundImage.src = 'assets/background.gif';
         this.bgLoaded = false;
         this.backgroundImage.onload = () => { this.bgLoaded = true; };
 
@@ -129,6 +131,7 @@ class Game {
 
         this.ui.hideAll();
         this.ui.showHUD();
+        this.ui.updatePlayerNames(this.player1Name, this.player2Name);
         this.ui.updateHealth(100, 100);
         this.ui.updateScore(0);
         this.ui.updateTimer(99);

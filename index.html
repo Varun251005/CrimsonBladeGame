@@ -10,13 +10,30 @@
     <div class="game-container">
         <!-- Main Menu -->
         <div id="mainMenu" class="menu">
-            <h1 class="game-title">STICKMAN SHADOW REVENGE</h1>
-            <p class="game-subtitle">Ultimate Fighting Arena</p>
+            <h1 class="game-title">CRIMSON BLADE</h1>
+            <p class="game-quote">No fear. No mercy.</p>
+            <p class="game-subtitle">Shadow Ninja</p>
             <div class="menu-buttons">
                 <button id="btn1Player" class="menu-btn">1 PLAYER</button>
                 <button id="btn2Players" class="menu-btn">2 PLAYERS</button>
                 <button id="btnControls" class="menu-btn">CONTROLS</button>
             </div>
+        </div>
+
+        <!-- Player Names Screen -->
+        <div id="playerNamesMenu" class="menu hidden">
+            <h2>ENTER PLAYER NAMES</h2>
+            <div class="name-inputs">
+                <div class="name-input-group">
+                    <label>Player 1:</label>
+                    <input type="text" id="player1Name" maxlength="15" placeholder="PLAYER 1">
+                </div>
+                <div class="name-input-group" id="player2NameGroup">
+                    <label>Player 2:</label>
+                    <input type="text" id="player2Name" maxlength="15" placeholder="PLAYER 2">
+                </div>
+            </div>
+            <button id="btnStartGame" class="menu-btn">START GAME</button>
         </div>
 
         <!-- Controls Screen -->
@@ -58,14 +75,14 @@
         <div id="gameHUD" class="hud hidden">
             <div class="hud-top">
                 <div class="player-info">
-                    <div class="player-name">PLAYER 1</div>
+                    <div class="player-name" id="p1NameDisplay">PLAYER 1</div>
                     <div class="health-bar-container">
                         <div id="health1" class="health-bar"></div>
                     </div>
                 </div>
                 <div class="timer" id="timer">99</div>
                 <div class="player-info">
-                    <div class="player-name">PLAYER 2</div>
+                    <div class="player-name" id="p2NameDisplay">PLAYER 2</div>
                     <div class="health-bar-container">
                         <div id="health2" class="health-bar"></div>
                     </div>

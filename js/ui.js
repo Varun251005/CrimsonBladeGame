@@ -10,15 +10,20 @@ class UIManager {
     initMenuButtons() {
         // Main menu buttons
         document.getElementById('btn1Player').addEventListener('click', () => {
-            this.game.startGame('1player');
+            this.showPlayerNames('1player');
         });
 
         document.getElementById('btn2Players').addEventListener('click', () => {
-            this.game.startGame('2players');
+            this.showPlayerNames('2players');
         });
 
         document.getElementById('btnControls').addEventListener('click', () => {
             this.showControls();
+        });
+
+        // Player names
+        document.getElementById('btnStartGame').addEventListener('click', () => {
+            this.startGameWithNames();
         });
 
         // Controls menu
@@ -48,6 +53,26 @@ class UIManager {
         document.getElementById('controlsMenu').classList.remove('hidden');
     }
 
+    // Show player names screen
+    showPlayerNames(mode) {
+        this.hideAll();
+        this.selectedMode = mode;
+        document.getElementById('playerNamesMenu').classList.remove('hidden');
+        document.getElementById('player2NameGroup').style.display = mode === '2players' ? 'flex' : 'none';
+        document.getElementById('player1Name').value = '';
+        document.getElementById('player2Name').value = '';
+        document.getElementById('player1Name').focus();
+    }
+
+    // Start game with names
+    startGameWithNames() {
+        const p1 = document.getElementById('player1Name').value.trim().toUpperCase() || 'PLAYER 1';
+        const p2 = document.getElementById('player2Name').value.trim().toUpperCase() || 'PLAYER 2';
+        this.game.player1Name = p1;
+        this.game.player2Name = p2;
+        this.game.startGame(this.selectedMode);
+    }
+
     // Hide controls screen
     hideControls() {
         document.getElementById('controlsMenu').classList.add('hidden');
@@ -63,6 +88,7 @@ class UIManager {
     // Hide all UI elements
     hideAll() {
         document.getElementById('mainMenu').classList.add('hidden');
+        document.getElementById('playerNamesMenu').classList.add('hidden');
         document.getElementById('controlsMenu').classList.add('hidden');
         document.getElementById('gameOver').classList.add('hidden');
         document.getElementById('gameHUD').classList.add('hidden');
@@ -111,6 +137,12 @@ class UIManager {
     // Update score (for 1-player mode)
     updateScore(score) {
         document.getElementById('score').textContent = 'Score: ' + score;
+    }
+
+    // Update player names in HUD
+    updatePlayerNames(p1Name, p2Name) {
+        document.getElementById('p1NameDisplay').textContent = p1Name;
+        document.getElementById('p2NameDisplay').textContent = p2Name;
     }
 
     // Update round display (for 2-player mode)

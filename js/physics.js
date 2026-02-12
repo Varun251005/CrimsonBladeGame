@@ -2,27 +2,30 @@
 // Physics Engine – Gravity, Collision, Bounds
 // ============================================================
 
-const GRAVITY          = 1.2;
-const MAX_FALL_SPEED   = 18;
-const GROUND_FRICTION  = 0.82;
-const AIR_FRICTION     = 0.95;
-const MIN_VELOCITY     = 0.1;
+const GRAVITY          = 1.4;
+const FALL_GRAVITY     = 1.8;
+const MAX_FALL_SPEED   = 20;
+const GROUND_FRICTION  = 0.85;
+const AIR_FRICTION     = 0.96;
+const MIN_VELOCITY     = 0.15;
 const KATANA_RANGE     = 65;
 const KATANA_HIT_H     = 55;
 
 class Physics {
     constructor() {
         this.gravity     = GRAVITY;
+        this.fallGravity = FALL_GRAVITY;
         this.maxFall     = MAX_FALL_SPEED;
         this.friction    = GROUND_FRICTION;
         this.airFriction = AIR_FRICTION;
     }
 
     applyGravity(character, ground) {
-        const wasInAir = character.y + character.height < ground;
+        const isOnGround = character.y + character.height >= ground;
 
-        if (wasInAir) {
-            character.velocityY += this.gravity;
+        if (!isOnGround) {
+            const g = character.velocityY > 0 ? this.fallGravity : this.gravity;
+            character.velocityY += g;
             if (character.velocityY > this.maxFall) {
                 character.velocityY = this.maxFall;
             }
