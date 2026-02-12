@@ -8,6 +8,11 @@ class Controls {
         this.justPressed = {};      // edge-triggered (true once per press)
 
         this._onKeyDown = (e) => {
+            // Ignore keys when typing in input fields
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+            
             const key = this.normalizeKey(e);
             if (!this.keys[key]) {
                 this.justPressed[key] = true;   // first frame only
@@ -23,6 +28,11 @@ class Controls {
         };
 
         this._onKeyUp = (e) => {
+            // Ignore keys when typing in input fields
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+            
             const key = this.normalizeKey(e);
             this.keys[key] = false;
         };

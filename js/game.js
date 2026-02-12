@@ -283,44 +283,40 @@ class Game {
 
         // Determine winner
         let winner = null;
-        if (this.player1.health > this.player2.health) winner = 'p1';
-        else if (this.player2.health > this.player1.health) winner = 'p2';
-        // else draw
+        let winnerName = '';
+        if (this.player1.health > this.player2.health) {
+            winner = 'p1';
+            winnerName = this.player1Name;
+        } else if (this.player2.health > this.player1.health) {
+            winner = 'p2';
+            winnerName = this.player2Name;
+        } else {
+            winnerName = 'DRAW';
+        }
+
+        this.state = 'gameover';
 
         if (this.mode === '1player') {
             if (winner === 'p1') {
                 this.score += 100;
-                this.ui.updateScore(this.score);
-                // Next robot round
-                if (this.player2 instanceof Robot) this.player2.increaseDifficulty();
-                this.state = 'roundEnd';
-                this.roundEndTimer = 120;
-                this.currentRound++;
+                this.ui.showGameOver(winnerName + ' WINS!', this.score);
             } else {
-                this.state = 'gameover';
                 this.ui.showGameOver('DEFEATED', this.score);
             }
         } else {
-            // 2-player best of 3
-            if (winner === 'p1') this.p1Wins++;
-            else if (winner === 'p2') this.p2Wins++;
-
-            if (this.p1Wins >= 2) {
-                this.state = 'gameover';
-                this.ui.showGameOver('PLAYER 1 WINS!');
-            } else if (this.p2Wins >= 2) {
-                this.state = 'gameover';
-                this.ui.showGameOver('PLAYER 2 WINS!');
+            // 2-player mode
+            if (winner === 'p1') {
+                this.ui.showGameOver(this.player1Name + ' WINS!');
+            } else if (winner === 'p2') {
+                this.ui.showGameOver(this.player2Name + ' WINS!');
             } else {
-                this.state = 'roundEnd';
-                this.roundEndTimer = 120;
-                this.currentRound++;
+                this.ui.showGameOver('DRAW!');
             }
         }
     }
 
     // ── Next round ──
-    nextRound() {
+    continueToNextRound() {
         this.state = 'playing';
         this.timer = 99;
         this.timerAccum = 0;
@@ -330,9 +326,15 @@ class Game {
         this.player1.reset(200);
         this.player2.reset(this.canvas.width - 250);
 
+        document.getElementById('roundWinner').classList.add('hidden');
+        this.ui.showHUD();
         this.ui.updateHealth(100, 100);
         this.ui.updateTimer(99);
         if (this.mode === '2players') this.ui.updateRound(this.currentRound, true);
+    }
+
+    nextRound() {
+        this.continueToNextRound();
     }
 
     // ════════════════════════════════════════════════════════

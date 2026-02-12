@@ -39,6 +39,11 @@ class UIManager {
         document.getElementById('btnMainMenu').addEventListener('click', () => {
             this.game.returnToMainMenu();
         });
+
+        // Round winner
+        document.getElementById('btnNextRound').addEventListener('click', () => {
+            this.game.continueToNextRound();
+        });
     }
 
     // Show main menu
@@ -91,6 +96,7 @@ class UIManager {
         document.getElementById('playerNamesMenu').classList.add('hidden');
         document.getElementById('controlsMenu').classList.add('hidden');
         document.getElementById('gameOver').classList.add('hidden');
+        document.getElementById('roundWinner').classList.add('hidden');
         document.getElementById('gameHUD').classList.add('hidden');
         document.getElementById('gameCanvas').style.display = 'none';
     }
@@ -177,6 +183,16 @@ class UIManager {
         }
         
         gameOver.classList.remove('hidden');
+    }
+
+    // Show round winner screen
+    showRoundWinner(winnerName) {
+        document.getElementById('gameHUD').classList.add('hidden');
+        document.getElementById('roundWinner').classList.remove('hidden');
+        document.getElementById('roundWinnerName').textContent = winnerName;
+        document.getElementById('roundWinnerName').style.fontSize = '2em';
+        document.getElementById('roundWinnerName').style.color = '#fff';
+        document.getElementById('roundWinnerName').style.marginBottom = '30px';
     }
 
     // Add pulse animation to CSS dynamically
