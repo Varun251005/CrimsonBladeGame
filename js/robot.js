@@ -4,8 +4,8 @@
 // ============================================================
 
 class Robot extends Character {
-    constructor(x, y) {
-        super(x, y, '#222222');
+    constructor(x, y, soundManager = null) {
+        super(x, y, '#222222', soundManager);
         this.facingRight = false;
 
         // AI

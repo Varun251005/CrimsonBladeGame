@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "your-project-id"
-  }
+    "default": "crimsonbladegame",
+    "crimsonblade": "crimsonbladegame"
+  },
+  "targets": {},
+  "etags": {}
 }

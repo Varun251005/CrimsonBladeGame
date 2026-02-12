@@ -21,12 +21,13 @@ const BLOCK_REDUCTION  = 0.25;
 const LUNGE_SPEED      = 4;
 
 class Character {
-    constructor(x, y, color) {
+    constructor(x, y, color, soundManager = null) {
         this.x = x;
         this.y = y;
         this.width  = CHAR_WIDTH;
         this.height = CHAR_HEIGHT;
         this.color  = color;
+        this.sound  = soundManager;
 
         // Physics
         this.velocityX = 0;
@@ -124,6 +125,7 @@ class Character {
     // ── On land callback ──
     onLand() {
         this.spawnDust();
+        if (this.sound) this.sound.playLand();
     }
 
     // ── Spawn dust particles ──
@@ -159,6 +161,7 @@ class Character {
         if (this.defeated || this.isJumping || this.hitStun > 0) return;
         this.velocityY = -this.jumpPower;
         this.isJumping = true;
+        if (this.sound) this.sound.playJump();
     }
 
     block(state) {
@@ -178,6 +181,10 @@ class Character {
 
         // Lunge forward
         this.velocityX += this.facingRight ? LUNGE_SPEED : -LUNGE_SPEED;
+        
+        // Play slash sound
+        if (this.sound) this.sound.playSlash();
+        
         return true;
     }
 

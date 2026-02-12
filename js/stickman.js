@@ -5,8 +5,8 @@
 // ============================================================
 
 class Stickman extends Character {
-    constructor(x, y, playerNumber) {
-        super(x, y, '#111111');
+    constructor(x, y, playerNumber, soundManager = null) {
+        super(x, y, '#111111', soundManager);
         this.playerNumber = playerNumber;
         this.facingRight   = playerNumber === 1;
 

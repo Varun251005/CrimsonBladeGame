@@ -12,6 +12,7 @@ class Game {
         this.physics  = new Physics();
         this.controls = new Controls();
         this.ui       = new UIManager(this);
+        this.sound    = new SoundManager();
 
         // Game state
         this.state     = 'menu';
@@ -119,13 +120,17 @@ class Game {
         this.hitFreeze = 0;
         this.screenShake = { x: 0, y: 0, intensity: 0, decay: 0.85 };
 
-        this.player1 = new Stickman(200, 0, 1);
+        // Enable sound on first user interaction
+        this.sound.enable();
+        this.sound.playIntro();
+
+        this.player1 = new Stickman(200, 0, 1, this.sound);
 
         if (mode === '2players') {
-            this.player2 = new Stickman(this.canvas.width - 250, 0, 2);
+            this.player2 = new Stickman(this.canvas.width - 250, 0, 2, this.sound);
             this.ui.updateRound(1, true);
         } else {
-            this.player2 = new Robot(this.canvas.width - 250, 0);
+            this.player2 = new Robot(this.canvas.width - 250, 0, this.sound);
             this.ui.updateRound(1, false);
         }
 
@@ -256,6 +261,9 @@ class Game {
 
                 // Hit freeze
                 this.hitFreeze = damage >= HEAVY_DMG ? this.HEAVY_FREEZE : this.HIT_FREEZE_DUR;
+
+                // Play hit sound
+                this.sound.playHit();
 
                 // Screen shake
                 const shakeStr = damage >= SPECIAL_DMG ? 14 : damage >= HEAVY_DMG ? 10 : 6;
