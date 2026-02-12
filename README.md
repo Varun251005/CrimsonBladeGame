@@ -1,4 +1,4 @@
-# 🥷 Stickman Shadow Revenge
+# 🥷 Crimson Blade with Stickman
 
 A 2D action-packed fighting game inspired by Shadow Ninja Revenge, featuring stickman characters with smooth animations and intense combat mechanics!
 
