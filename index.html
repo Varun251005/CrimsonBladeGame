@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickman Shadow Revenge - 2D Fighting Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Main Menu -->
+        <div id="mainMenu" class="menu">
+            <h1 class="game-title">STICKMAN SHADOW REVENGE</h1>
+            <p class="game-subtitle">Ultimate Fighting Arena</p>
+            <div class="menu-buttons">
+                <button id="btn1Player" class="menu-btn">1 PLAYER</button>
+                <button id="btn2Players" class="menu-btn">2 PLAYERS</button>
+                <button id="btnControls" class="menu-btn">CONTROLS</button>
+            </div>
+        </div>
+
+        <!-- Controls Screen -->
+        <div id="controlsMenu" class="menu hidden">
+            <h2>CONTROLS</h2>
+            <div class="controls-container">
+                <div class="control-section">
+                    <h3>PLAYER 1 (Keyboard)</h3>
+                    <table>
+                        <tr><td>W</td><td>Jump</td></tr>
+                        <tr><td>A</td><td>Move Left</td></tr>
+                        <tr><td>S</td><td>Crouch/Block</td></tr>
+                        <tr><td>D</td><td>Move Right</td></tr>
+                        <tr><td>F</td><td>Light Punch</td></tr>
+                        <tr><td>G</td><td>Heavy Attack</td></tr>
+                        <tr><td>H</td><td>Special Move</td></tr>
+                    </table>
+                </div>
+                <div class="control-section">
+                    <h3>PLAYER 2 (Numpad)</h3>
+                    <table>
+                        <tr><td>8</td><td>Jump</td></tr>
+                        <tr><td>4</td><td>Move Left</td></tr>
+                        <tr><td>5</td><td>Crouch/Block</td></tr>
+                        <tr><td>6</td><td>Move Right</td></tr>
+                        <tr><td>1</td><td>Light Punch</td></tr>
+                        <tr><td>2</td><td>Heavy Attack</td></tr>
+                        <tr><td>3</td><td>Special Move</td></tr>
+                    </table>
+                </div>
+            </div>
+            <button id="btnBackFromControls" class="menu-btn">BACK</button>
+        </div>
+
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Game HUD -->
+        <div id="gameHUD" class="hud hidden">
+            <div class="hud-top">
+                <div class="player-info">
+                    <div class="player-name">PLAYER 1</div>
+                    <div class="health-bar-container">
+                        <div id="health1" class="health-bar"></div>
+                    </div>
+                </div>
+                <div class="timer" id="timer">99</div>
+                <div class="player-info">
+                    <div class="player-name">PLAYER 2</div>
+                    <div class="health-bar-container">
+                        <div id="health2" class="health-bar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="score-display">
+                <span id="score">Score: 0</span>
+                <span id="roundDisplay" class="hidden">Round: 1</span>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOver" class="menu hidden">
+            <h2 id="gameOverText">GAME OVER</h2>
+            <p id="finalScore"></p>
+            <div class="menu-buttons">
+                <button id="btnRestart" class="menu-btn">PLAY AGAIN</button>
+                <button id="btnMainMenu" class="menu-btn">MAIN MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/physics.js"></script>
+    <script src="js/character.js"></script>
+    <script src="js/stickman.js"></script>
+    <script src="js/robot.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

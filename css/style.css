@@ -1,0 +1,253 @@
+/* ═══════════════════════════════════════════════════════════
+   Shadow Fighter – Clean Vector UI Theme
+   No glow effects. Sharp edges. Minimalist.
+   ═══════════════════════════════════════════════════════════ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial Black', Arial, sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ── Canvas ── */
+#gameCanvas {
+    display: none;
+    background: #000;
+    border: 3px solid #333;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ── Menu ── */
+.menu {
+    text-align: center;
+    background: rgba(10, 10, 10, 0.97);
+    padding: 50px;
+    border-radius: 12px;
+    border: 2px solid #333;
+    max-width: 600px;
+    animation: fadeIn 0.4s ease;
+}
+
+.menu.hidden {
+    display: none;
+}
+
+.game-title {
+    font-size: 3.2em;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 10px;
+    letter-spacing: 4px;
+}
+
+.game-subtitle {
+    font-size: 1.1em;
+    color: #888;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #ddd;
+    margin-bottom: 20px;
+    font-size: 2em;
+    letter-spacing: 2px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.menu-btn {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    border: 2px solid #444;
+    padding: 18px 40px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 2px;
+}
+
+.menu-btn:hover {
+    background: #2a2a2a;
+    border-color: #888;
+    transform: translateY(-2px);
+}
+
+.menu-btn:active {
+    transform: translateY(0);
+    background: #333;
+}
+
+/* ── Controls ── */
+.controls-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.control-section {
+    flex: 1;
+    background: rgba(30, 30, 30, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.control-section h3 {
+    color: #ccc;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.control-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.control-section td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: #bbb;
+}
+
+.control-section td:first-child {
+    color: #fff;
+    font-weight: bold;
+    width: 40%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+}
+
+/* ── HUD ── */
+.hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 24px;
+    z-index: 100;
+}
+
+.hud.hidden {
+    display: none;
+}
+
+.hud-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.player-info {
+    flex: 1;
+    max-width: 400px;
+}
+
+.player-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #ddd;
+    letter-spacing: 1px;
+}
+
+.health-bar-container {
+    background: #111;
+    border: 2px solid #444;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+.health-bar {
+    height: 22px;
+    width: 100%;
+    background: linear-gradient(to right, #eee, #ccc);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.timer {
+    font-size: 2.6em;
+    font-weight: bold;
+    color: #fff;
+    background: #111;
+    padding: 8px 24px;
+    border-radius: 6px;
+    border: 2px solid #444;
+    min-width: 90px;
+    text-align: center;
+}
+
+.score-display {
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #bbb;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* ── Game Over ── */
+#gameOverText {
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#finalScore {
+    font-size: 1.6em;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .game-title { font-size: 2em; }
+    .menu { padding: 30px; }
+    .controls-container { flex-direction: column; }
+    .menu-btn { font-size: 1.1em; padding: 14px 28px; }
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
+}
