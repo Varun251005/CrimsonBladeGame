@@ -17,7 +17,7 @@ class Game {
         // Background music
         this.bgMusic = new Audio('assets/sounds/bgm.mpeg');
         this.bgMusic.loop = true;
-        this.bgMusic.volume = 0.3;
+        this.bgMusic.volume = 0.5;
         this.bgMusicStarted = false;
 
         // Start music on first user interaction

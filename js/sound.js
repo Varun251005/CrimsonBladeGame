@@ -3,11 +3,10 @@
 // ============================================================
 
 const VOLUME = {
-    INTRO: 0.3,
-    JUMP: 0.4,
-    SLASH: 0.5,
-    HIT: 0.6,
-    LAND: 0.4
+    JUMP: 0.7,
+    SLASH: 0.7,
+    HIT: 0.7,
+    LAND: 0.7
 };
 
 class SoundManager {

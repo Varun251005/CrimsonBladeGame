@@ -35,13 +35,13 @@ class UIManager {
         document.getElementById('musicVolume').addEventListener('input', (e) => {
             const value = e.target.value;
             document.getElementById('musicVolumeValue').textContent = value + '%';
-            this.game.setMusicVolume(value / 100);
+            this.game.setMusicVolume(parseInt(value));
         });
 
         document.getElementById('sfxVolume').addEventListener('input', (e) => {
             const value = e.target.value;
             document.getElementById('sfxVolumeValue').textContent = value + '%';
-            this.game.setSFXVolume(value / 100);
+            this.game.setSFXVolume(parseInt(value));
         });
 
         // Game over menu
