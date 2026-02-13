@@ -14,7 +14,6 @@ class SoundManager {
     constructor() {
         this.sounds = {};
         this.enabled = false;
-        this.introPlayed = false;
         this.audioContext = null;
         
         // Try to create AudioContext for fallback sounds
@@ -24,11 +23,10 @@ class SoundManager {
             console.warn('Web Audio API not supported');
         }
         
-        // Load all sounds
-        this.loadSound('intro', 'assets/sounds/intro.mpeg', VOLUME.INTRO);
+        // Load all sounds (only existing files)
         this.loadSound('jump', 'assets/sounds/Jump sound.mpeg', VOLUME.JUMP);
         this.loadSound('slash', 'assets/sounds/Katana slash.mpeg', VOLUME.SLASH);
-        this.loadSound('hit', 'assets/sounds/hit.mpeg', VOLUME.HIT);
+        this.loadSound('hit', 'assets/sounds/Katana slash.mpeg', VOLUME.HIT);
         this.loadSound('land', 'assets/sounds/Landing sound.mpeg', VOLUME.LAND);
     }
 
@@ -102,12 +100,6 @@ class SoundManager {
         
         oscillator.start(ctx.currentTime);
         oscillator.stop(ctx.currentTime + 0.1);
-    }
-
-    playIntro() {
-        if (!this.enabled || this.introPlayed) return;
-        this.introPlayed = true;
-        this.playSound('intro');
     }
 
     playJump() {

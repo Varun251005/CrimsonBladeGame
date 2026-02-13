@@ -125,9 +125,10 @@ class Game {
     }
 
     setSFXVolume(volume) {
+        const volMultiplier = volume / 100;
         for (const key in this.sound.sounds) {
             if (this.sound.sounds[key].audio) {
-                this.sound.sounds[key].audio.volume = this.sound.sounds[key].volume * volume;
+                this.sound.sounds[key].audio.volume = this.sound.sounds[key].volume * volMultiplier;
             }
         }
     }
@@ -151,7 +152,6 @@ class Game {
 
         // Enable sound on first user interaction
         this.sound.enable();
-        this.sound.playIntro();
 
         this.player1 = new Stickman(200, 0, 1, this.sound);
 
@@ -241,8 +241,6 @@ class Game {
         this.physics.updatePosition(this.player2);
         this.physics.keepInBounds(this.player1, this.canvas.width);
         this.physics.keepInBounds(this.player2, this.canvas.width);
-
-        this.controls.clearJustPressed();
 
         this.controls.clearJustPressed();
 
