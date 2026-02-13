@@ -250,6 +250,68 @@ h2 {
     .menu-btn { font-size: 1.1em; padding: 14px 28px; }
 }
 
+/* ── Audio Settings ── */
+.audio-settings {
+    background: rgba(30, 30, 30, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.audio-settings h3 {
+    color: #ccc;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.volume-control label {
+    color: #bbb;
+    min-width: 120px;
+    font-size: 1em;
+}
+
+.volume-control input[type="range"] {
+    flex: 1;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #444;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #888;
+}
+
+.volume-control input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #888;
+}
+
+.volume-control span {
+    color: #fff;
+    min-width: 45px;
+    font-weight: bold;
+}
+
 /* ── Name Inputs ── */
 .name-inputs {
     display: flex;

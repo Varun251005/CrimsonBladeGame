@@ -14,6 +14,22 @@ class Game {
         this.ui       = new UIManager(this);
         this.sound    = new SoundManager();
 
+        // Background music
+        this.bgMusic = new Audio('assets/sounds/bgm.mpeg');
+        this.bgMusic.loop = true;
+        this.bgMusic.volume = 0.3;
+        this.bgMusicStarted = false;
+
+        // Start music on first user interaction
+        const startMusic = () => {
+            if (!this.bgMusicStarted) {
+                this.bgMusic.play().catch(() => {});
+                this.bgMusicStarted = true;
+            }
+        };
+        document.addEventListener('click', startMusic, { once: true });
+        document.addEventListener('keydown', startMusic, { once: true });
+
         // Game state
         this.state     = 'menu';
         this.mode      = null;
@@ -101,6 +117,19 @@ class Game {
         this.lastTime = performance.now();
         this.gameLoop = this.gameLoop.bind(this);
         requestAnimationFrame(this.gameLoop);
+    }
+
+    // Volume control methods
+    setMusicVolume(volume) {
+        this.bgMusic.volume = volume / 100;
+    }
+
+    setSFXVolume(volume) {
+        for (const key in this.sound.sounds) {
+            if (this.sound.sounds[key].audio) {
+                this.sound.sounds[key].audio.volume = this.sound.sounds[key].volume * volume;
+            }
+        }
     }
 
     // ════════════════════════════════════════════════════════

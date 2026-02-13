@@ -31,6 +31,19 @@ class UIManager {
             this.hideControls();
         });
 
+        // Volume controls
+        document.getElementById('musicVolume').addEventListener('input', (e) => {
+            const value = e.target.value;
+            document.getElementById('musicVolumeValue').textContent = value + '%';
+            this.game.setMusicVolume(value / 100);
+        });
+
+        document.getElementById('sfxVolume').addEventListener('input', (e) => {
+            const value = e.target.value;
+            document.getElementById('sfxVolumeValue').textContent = value + '%';
+            this.game.setSFXVolume(value / 100);
+        });
+
         // Game over menu
         document.getElementById('btnRestart').addEventListener('click', () => {
             this.game.restartGame();

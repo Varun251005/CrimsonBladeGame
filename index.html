@@ -38,7 +38,23 @@
 
         <!-- Controls Screen -->
         <div id="controlsMenu" class="menu hidden">
-            <h2>CONTROLS</h2>
+            <h2>CONTROLS & SETTINGS</h2>
+            
+            <!-- Audio Settings -->
+            <div class="audio-settings">
+                <h3>Audio Settings</h3>
+                <div class="volume-control">
+                    <label>Music Volume:</label>
+                    <input type="range" id="musicVolume" min="0" max="100" value="30">
+                    <span id="musicVolumeValue">30%</span>
+                </div>
+                <div class="volume-control">
+                    <label>Sound Effects:</label>
+                    <input type="range" id="sfxVolume" min="0" max="100" value="50">
+                    <span id="sfxVolumeValue">50%</span>
+                </div>
+            </div>
+
             <div class="controls-container">
                 <div class="control-section">
                     <h3>PLAYER 1 (Keyboard)</h3>

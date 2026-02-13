@@ -25,11 +25,11 @@ class SoundManager {
         }
         
         // Load all sounds
-        this.loadSound('intro', 'assets/sounds/intro.mp3', VOLUME.INTRO);
-        this.loadSound('jump', 'assets/sounds/jump.mp3', VOLUME.JUMP);
-        this.loadSound('slash', 'assets/sounds/slash.mp3', VOLUME.SLASH);
-        this.loadSound('hit', 'assets/sounds/hit.mp3', VOLUME.HIT);
-        this.loadSound('land', 'assets/sounds/land.mp3', VOLUME.LAND);
+        this.loadSound('intro', 'assets/sounds/intro.mpeg', VOLUME.INTRO);
+        this.loadSound('jump', 'assets/sounds/Jump sound.mpeg', VOLUME.JUMP);
+        this.loadSound('slash', 'assets/sounds/Katana slash.mpeg', VOLUME.SLASH);
+        this.loadSound('hit', 'assets/sounds/hit.mpeg', VOLUME.HIT);
+        this.loadSound('land', 'assets/sounds/Landing sound.mpeg', VOLUME.LAND);
     }
 
     loadSound(name, path, volume = 1.0) {
