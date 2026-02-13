@@ -158,7 +158,8 @@ class Character {
     }
 
     jump() {
-        if (this.defeated || this.isJumping || this.hitStun > 0) return;
+        if (this.defeated || this.hitStun > 0) return;
+        if (this.isJumping) return;
         this.velocityY = -this.jumpPower;
         this.isJumping = true;
         if (this.sound) this.sound.playJump();

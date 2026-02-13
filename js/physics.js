@@ -21,7 +21,7 @@ class Physics {
     }
 
     applyGravity(character, ground) {
-        const isOnGround = character.y + character.height >= ground;
+        const isOnGround = character.y + character.height >= ground - 1;
 
         if (!isOnGround) {
             const g = character.velocityY > 0 ? this.fallGravity : this.gravity;
@@ -30,12 +30,15 @@ class Physics {
                 character.velocityY = this.maxFall;
             }
         } else {
-            if (character.isJumping && character.velocityY >= 0) {
-                character.onLand();
+            // Only land if falling down
+            if (character.velocityY > 0) {
+                if (character.isJumping) {
+                    character.onLand();
+                }
+                character.y = ground - character.height;
+                character.velocityY = 0;
+                character.isJumping = false;
             }
-            character.y = ground - character.height;
-            character.velocityY = 0;
-            character.isJumping = false;
         }
     }
 

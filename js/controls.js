@@ -62,7 +62,7 @@ class Controls {
         // Movement (held keys)
         if (this.keys['a']) player.moveLeft();
         if (this.keys['d']) player.moveRight();
-        if (this.keys['w']) player.jump();
+        if (this.justPressed['w']) player.jump();
         player.block(!!this.keys['s']);
 
         // Attacks (edge-triggered)
@@ -78,7 +78,7 @@ class Controls {
         // Movement
         if (this.keys['numpad4']) player.moveLeft();
         if (this.keys['numpad6']) player.moveRight();
-        if (this.keys['numpad8']) player.jump();
+        if (this.justPressed['numpad8']) player.jump();
         player.block(!!this.keys['numpad5']);
 
         // Attacks (edge-triggered)

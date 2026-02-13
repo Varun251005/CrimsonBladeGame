@@ -195,22 +195,15 @@ class Game {
             }
         }
 
-        // Input
+        // Input FIRST
         this.controls.updatePlayer1(this.player1);
         if (this.mode === '2players') {
             this.controls.updatePlayer2(this.player2);
         } else if (this.player2 instanceof Robot) {
             this.player2.updateAI(this.player1, this.canvas.width);
         }
-        this.controls.clearJustPressed();
 
-        // Face each other
-        if (!this.player1.defeated && !this.player2.defeated) {
-            if (!this.player1.isAttacking) this.player1.facingRight = this.player1.x < this.player2.x;
-            if (!this.player2.isAttacking) this.player2.facingRight = this.player2.x < this.player1.x;
-        }
-
-        // Physics
+        // Physics AFTER input
         this.physics.applyGravity(this.player1, this.groundY);
         this.physics.applyGravity(this.player2, this.groundY);
         this.physics.applyFriction(this.player1);
@@ -219,6 +212,16 @@ class Game {
         this.physics.updatePosition(this.player2);
         this.physics.keepInBounds(this.player1, this.canvas.width);
         this.physics.keepInBounds(this.player2, this.canvas.width);
+
+        this.controls.clearJustPressed();
+
+        this.controls.clearJustPressed();
+
+        // Face each other
+        if (!this.player1.defeated && !this.player2.defeated) {
+            if (!this.player1.isAttacking) this.player1.facingRight = this.player1.x < this.player2.x;
+            if (!this.player2.isAttacking) this.player2.facingRight = this.player2.x < this.player1.x;
+        }
 
         // Character updates
         this.player1.update();
