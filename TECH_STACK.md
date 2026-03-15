@@ -49,49 +49,7 @@ The game follows OOP principles with clear separation of concerns:
          └──────────────┘
 ```
 
-ent controls
-  - jump()          → Jump mechanics
-  - attack()        → Attack system
-  - takeDamage()    → Damage calculation
-  - block()         → Defense mechanism
-```
 
-### 5. **stickman.js** - Player Character
-```javascript
-Class: Stickman extends Character
-Unique Features:
-  - Player-specific colors
-  - Detailed stickman animations
-  - Animation states (idle, walk, jump, attack, death)
-
-Drawing Methods:
-  - drawIdle()      → Standing animation
-  - drawWalk()      → Walking cycle
-  - drawJump()      → Jump pose
-  - drawAttack()    → Attack animations
-  - drawDeath()     → Death animation
-```
-
-### 6. **robot.js** - AI Enemy
-```javascript
-Class: Robot extends Character
-Unique Features:
-  - AI decision making
-  - Aggression levels
-  - Automatic behavior
-  - Robot appearance
-
-AI Methods:
-  - updateAI()      → AI thinking loop
-  - makeDecision()  → Choose action
-  - executeBehavior()→ Perform action
-
-Drawing Methods:
-  - Robot-specific rendering
-  - Mechanical appearance
-  - Glowing eyes effect
-  - Attack animations
-```
 
 ### 7. **physics.js** - Physics Engine
 ```javascript
