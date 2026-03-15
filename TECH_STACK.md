@@ -47,25 +47,6 @@ The game follows OOP principles with clear separation of concerns:
          │   Render     │
          │   (Canvas)   │
          └──────────────┘
-```
-
-
-
-
-  - HUD updates
-  - Health bar rendering
-  - Score display
-  - Game over screen
-
-Methods:
-  - showMainMenu()   → Main menu
-  - showHUD()        → Game interface
-  - updateHealth()   → Health bars
-  - updateTimer()    → Countdown
-  - updateScore()    → Score display
-  - showGameOver()   → End screen
-```
-
 ---
 
 ## 🎮 Game Loop Architecture
